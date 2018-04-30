@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: CloudFromartion Template for CodePipleline
+
+Parameters: 
+  GitHubOAuthToken: 
+    Type: String
+
+Resources:
+
+  ArtifactStore: 
+    Type: "AWS::S3::Bucket"
+    Properties:
+      BucketName: nekolog-artifact-store
+  
+  CodeBuildProject:
+    Type: "AWS::CodeBuild::Project"
+    Properties:
+      Name: nekolog
+      ServiceRole: !GetAtt CodeBuildRole.Arn
+      Artifacts:
+        Type: CODEPIPELINE
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/nodejs:8.11.0
+      Source:
+        Type: CODEPIPELINE
+
+      
+  CodePipelineRole:
+    Type: "AWS::IAM::Role"
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Principal: 
+              Service: 
+                - "codepipeline.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Policies:
+        - PolicyName: CloudFormationAccess
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "cloudformation:*"
+                Resource:
+                  - "arn:aws:cloudformation:*:*:stack/nekolog-app/*"
+        - PolicyName: CodePipelineMiscAccess
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "iam:PassRole"
+                  - "codebuild:StartBuild"
+                  - "codebuild:BatchGetBuilds"
+                Resource:
+                  - "*"
+
+  CodeBuildRole:
+    Type: "AWS::IAM::Role"
+    Properties: 
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement: 
+          - Effect: "Allow"
+            Principal: 
+              Service: 
+                - "codebuild.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/CloudWatchFullAccess"
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        - "arn:aws:iam::aws:policy/AmazonAPIGatewayAdministrator"
+        - "arn:aws:iam::aws:policy/IAMFullAccess"
+        - "arn:aws:iam::aws:policy/AWSLambdaFullAccess"
+      Policies:
+        - PolicyName: CloudFormationFullAccessForCodeBuild
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - "cloudformation:*"
+                Resource:
+                  - "*"
+                  
+  ArtifactStoreAccessPolicy:
+    Type: "AWS::IAM::Policy"
+    Properties: 
+        PolicyName: ArtifactStoreAccess
+        PolicyDocument: 
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - "s3:*"
+              Resource:
+                - !Join ["", [ !GetAtt ArtifactStore.Arn, "/*" ] ]
+        Roles:
+          - !Ref CodePipelineRole
+          - !Ref CodeBuildRole
+
+  Pipeline:
+    Type: "AWS::CodePipeline::Pipeline"
+    Properties:
+      ArtifactStore:
+        Type: S3
+        Location: !Ref ArtifactStore
+      Name: nekolog
+      RestartExecutionOnUpdate: no
+      RoleArn: !GetAtt CodePipelineRole.Arn
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: GitHub
+              ActionTypeId:
+                Category: Source
+                Owner: ThirdParty
+                Version: 1
+                Provider: GitHub
+              Configuration:
+                Owner: clicube
+                Repo: nekolog
+                Branch: master
+                OAuthToken: !Ref GitHubOAuthToken
+              OutputArtifacts:
+                - Name: AppSource
+        - Name: Deploy
+          Actions:
+            - InputArtifacts:
+                - Name: AppSource
+              Name: CodeBuild
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Version: 1
+                Provider: CodeBuild
+              OutputArtifacts:
+                - Name: AppBuild
+              Configuration:
+                ProjectName: !Ref CodeBuildProject
