@@ -1,6 +1,6 @@
 'use strict'
 
-const TableName = "Events"
+const TableName = "EventsV2"
 
 function validate(event) {
 
