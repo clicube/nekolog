@@ -15,16 +15,18 @@ module.exports.findByPetId = (ddc, petId) => {
 
 module.exports.addt = (ddc, event) => {
     validate(event)
+    var item = {
+        petId: event.petId,
+        createdAt: Date.now(),
+        data: {
+            categoly: event.categoly,
+            type: event.type,
+            value: event.value
+        }
+    }
     return ddc.put({
         TableName: TableName,
-        Item: {
-            petId: event.petId,
-            createdAt: Date.now(),
-            data: JSON.stringify({
-                categoly: event.categoly,
-                type: event.type,
-                value: event.value
-            })
-        }
-    })
+        Item: item
+    }).promise()
+    .then(() => {return item})
 }
