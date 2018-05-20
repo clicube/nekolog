@@ -17,7 +17,8 @@ app.put('/events', (req, res, next) => {
   ddc.put({
     TableName: "eventsTable",
     Item: {
-      id: { "S": "2" },
+      petId: { "S": "1" },
+      createdAt: { "N": Date.now().toString },
       data: { "S": "{\"hoge\": \"fuga\"}" }
     }
   }).promise()

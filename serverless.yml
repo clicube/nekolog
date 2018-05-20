@@ -26,11 +26,15 @@ resources:
       Properties:
         TableName: eventsTable
         AttributeDefinitions:
-          - AttributeName: id
+          - AttributeName: petId
             AttributeType: S
+          - AttributeName: createdAt
+            AttributeType: N
         KeySchema:
-        - AttributeName: id
+        - AttributeName: petId
           KeyType: HASH
+        - AttributeName: createdAt
+          KeyType: RANGE
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
