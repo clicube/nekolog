@@ -17,6 +17,14 @@ module.exports.addt = (ddc, event) => {
     validate(event)
     return ddc.put({
         TableName: TableName,
-        Item: event
+        Item: {
+            petId: event.petId,
+            createdAt: Date.now(),
+            data: JSON.stringify({
+                categoly: event.categoly,
+                type: event.type,
+                value: event.value
+            })
+        }
     })
 }
