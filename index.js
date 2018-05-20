@@ -7,7 +7,7 @@ const app = express();
 const events = require('./events.js');
 
 app.get('/events', (req, res, next) => {
-  events.get().promise()
+  events.get()
   .then( (result) => { res.send(result) } );
 });
 
