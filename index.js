@@ -9,7 +9,7 @@ app.get('/events', (req, res, next) => {
   ddc.scan({
     TableName: "eventsTable"
   }).promise()
-  .then((result) => res.send(result.items))
+  .then((result) => res.send(result))
   .catch(next)
 });
 
