@@ -1,16 +1,27 @@
 'use strict';
 
-const serverless = require('serverless-http');
-const express = require('express');
-const app = express();
+process.on('unhandledRejection', console.dir)
 
-const events = require('./events.js');
+const serverless = require('serverless-http')
+const express = require('express')
+const bodyParser = require('body-parser')
 
-process.on('unhandledRejection', console.dir);
+const app = express()
+app.use(bodyParser.json())
+
+const AWS = require('aws-sdk')
+const ddc = new AWS.DynamoDB.DocumentClient()
+
+const events = require('./events.js')
 
 app.get('/events', (req, res, next) => {
-  events.get()
-  .then( (result) => { res.send(result) } );
-});
+  events.findByPetId(ddc, 1)
+  .then( (result) => { res.send(result) } )
+})
 
-module.exports.handler = serverless(app);
+app.put('/events', (req, res, next) => {
+  events.add(req.body)
+  .then( (result) => { res.send(result) } )
+})
+
+module.exports.handler = serverless(app)
