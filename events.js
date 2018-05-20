@@ -13,7 +13,7 @@ module.exports.findByPetId = (ddc, petId) => {
     .then( (result) => { return result.Items } )
 }
 
-module.exports.addt = (ddc, event) => {
+module.exports.add = (ddc, event) => {
     validate(event)
     var item = {
         petId: event.petId,
