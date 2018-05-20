@@ -18,7 +18,7 @@ app.put('/events', (req, res, next) => {
     TableName: "eventsTable",
     Item: {
       petId: "1",
-      createdAt: Date.now().toString ,
+      createdAt: Date.now() ,
       data: "{\"hoge\": \"fuga\"}" 
     }
   }).promise()
