@@ -19,13 +19,13 @@ const ngResponce = { result: "NG" }
 app.get('/pets/:petId/events', (req, res, next) => {
   events.findByPetId(ddc, req.params.petId)
   .then( (result) => { res.send(result) } )
-  .catch( () => { return ngResponce })
+  .catch( () => { res.send(ngResponce) })
 })
 
 app.put('/pets/:petId/events', (req, res, next) => {
   events.add(ddc, req.params.petId, req.body)
   .then( (result) => { res.send(result) } )
-  .catch( () => { return ngResponce })
+  .catch( () => { res.send(ngResponce) })
 })
 
 module.exports.handler = serverless(app)
