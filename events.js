@@ -29,7 +29,8 @@ module.exports.add = (ddc, petId, event) => {
     }
     return ddc.put({
         TableName: TableName,
-        Item: item
+        Item: item,
+        ConditionExpression: "attribute_not_exists(petId)"
     }).promise()
     .then(() => { return item })
 }
