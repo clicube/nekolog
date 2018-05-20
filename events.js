@@ -5,9 +5,9 @@ const TableName = "Events";
 const AWS = require('aws-sdk');
 const ddc = new AWS.DynamoDB.DocumentClient();
 
-module.exports.get = (callback) => {
+module.exports.get = () => {
     return ddc.get({
         TableName: TableName
     }).promise()
-    .then( (result) => { callback(result) } )
+    .then( (result) => {return result.Item} )
 };
