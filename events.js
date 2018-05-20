@@ -7,9 +7,12 @@ function validate(event) {
 }
 
 module.exports.findByPetId = (ddc, petId) => {
-    return ddc.scan({
-        TableName: TableName
-    }).promise()
+    return ddc.query({
+        TableName: TableName,
+        KeyConditionExpression : "#k = :val",
+        ExpressionAttributeNames  : {"#k" : "petId"},
+        ExpressionAttributeValues : {":val" : petId}
+       }).promise()
     .then((result) => { return result.Items })
 }
 
