@@ -11,11 +11,11 @@ functions:
     handler: index.handler
     events:
       - http:
-          path: /events
+          path: /pets/{petId}/events
           method: get
           cors: true
       - http:
-          path: /events
+          path: /pets/{petId}/events
           method: put
           cors: true
 
