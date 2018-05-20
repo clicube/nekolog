@@ -21,10 +21,10 @@ functions:
 
 resources:
   Resources:
-    eventsTable:
+    EventsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: eventsTable
+        TableName: Events
         AttributeDefinitions:
           - AttributeName: petId
             AttributeType: S
@@ -38,7 +38,7 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-    dynamoDbIamRole:
+    DynamoDbIamRole:
       Type: AWS::IAM::Policy
       DependsOn: eventsTable
       Properties:
