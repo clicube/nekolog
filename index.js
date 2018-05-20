@@ -15,7 +15,11 @@ app.get('/events', (req, res, next) => {
 
 app.put('/events', (req, res, next) => {
   ddc.put({
-    TableName: "eventsTable"
+    TableName: "eventsTable",
+    Item: {
+      id: { "S": "2" },
+      data: { "S": "{\"hoge\": \"fuga\"}" }
+    }
   }).promise()
   .then((result) => res.send(result))
   .catch(next)
