@@ -10,7 +10,7 @@ module.exports.findByPetId = (ddc, petId) => {
     return ddc.scan({
         TableName: TableName
     }).promise()
-    .then( (result) => { return result.Items } )
+    .then((result) => { return result.Items })
 }
 
 module.exports.add = (ddc, event) => {
@@ -28,5 +28,5 @@ module.exports.add = (ddc, event) => {
         TableName: TableName,
         Item: item
     }).promise()
-    .then(() => {return item})
+    .then(() => { return item })
 }
