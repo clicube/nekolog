@@ -36,6 +36,7 @@ resources:
           WriteCapacityUnits: 1
           Type: AWS::IAM::Policy
     dynamoDbIamRole:
+      Type: AWS::IAM::Policy
       DependsOn: eventsTable
       Properties:
         PolicyName: lambda-dynamodb
