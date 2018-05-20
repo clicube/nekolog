@@ -9,5 +9,5 @@ module.exports.get = () => {
     return ddc.get({
         TableName: TableName
     }).promise()
-    .then( (result) => { return result.Item } )
+    .then( (result) => { return result.Items } )
 };
