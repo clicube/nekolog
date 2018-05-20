@@ -24,10 +24,10 @@ resources:
     EventsTable:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: EventsV2
+        TableName: Events
         AttributeDefinitions:
           - AttributeName: petId
-            AttributeType: N
+            AttributeType: S
           - AttributeName: createdAt
             AttributeType: N
         KeySchema:
