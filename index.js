@@ -20,7 +20,6 @@ app.get('/events', (req, res, next) => {
 })
 
 app.put('/events', (req, res, next) => {
-  console.dir(req)
   events.add(ddc, req.body)
   .then( (result) => { res.send(result) } )
 })

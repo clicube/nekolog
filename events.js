@@ -19,9 +19,9 @@ module.exports.add = (ddc, event) => {
         petId: event.petId,
         createdAt: Date.now(),
         data: {
-            categoly: event.categoly,
-            type: event.type,
-            value: event.value
+            categoly: event.data.categoly,
+            type: event.data.type,
+            value: event.data.value
         }
     }
     return ddc.put({
