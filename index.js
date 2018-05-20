@@ -2,28 +2,12 @@ const serverless = require('serverless-http');
 const express = require('express')
 const app = express()
 
-const AWS = require('aws-sdk');
-const ddc = new AWS.DynamoDB.DocumentClient();
+const events = require('events')
+
 
 app.get('/events', (req, res, next) => {
-  ddc.scan({
-    TableName: "Events"
-  }).promise()
-  .then((result) => res.send(result.Items))
-  .catch(next)
-});
-
-app.put('/events', (req, res, next) => {
-  ddc.put({
-    TableName: "Events",
-    Item: {
-      petId: "1",
-      createdAt: Date.now() ,
-      data: "{\"hoge\": \"fuga\"}" 
-    }
-  }).promise()
-  .then((result) => res.send(result))
-  .catch(next)
+  events.get().promise()
+  .then((result) => {res.send(result)})
 });
 
 module.exports.handler = serverless(app);
