@@ -14,11 +14,18 @@ functions:
           path: /pets/{petId}/events
           method: get
           cors: true
+          request:
+            parameters:
+              paths:
+                petId: true
       - http:
           path: /pets/{petId}/events
           method: put
           cors: true
-
+          request:
+            parameters:
+              paths:
+                petId: true
 resources:
   Resources:
     EventsTable:
