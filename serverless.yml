@@ -44,6 +44,7 @@ resources:
           Statement:
             - Effect: Allow
               Action:
+                - dynamodb:Scan
                 - dynamodb:GetItem
                 - dynamodb:PutItem
                 - dynamodb:UpdateItem
