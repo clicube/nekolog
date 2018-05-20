@@ -1,6 +1,6 @@
 'use strict'
 
-const TableName = "EventsV2"
+const TableName = "Events"
 
 function validate(event) {
 
@@ -13,11 +13,11 @@ module.exports.findByPetId = (ddc, petId) => {
     .then((result) => { return result.Items })
 }
 
-module.exports.add = (ddc, event) => {
+module.exports.add = (ddc, petId, event) => {
     validate(event)
     var item = {
-        petId: event.petId,
-        createdAt: Date.now(),
+        petId: petId,
+        createdAt: event.createdAt || Date.now(),
         data: {
             categoly: event.data.categoly,
             type: event.data.type,

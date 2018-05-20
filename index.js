@@ -14,14 +14,18 @@ const ddc = new AWS.DynamoDB.DocumentClient()
 
 const events = require('./events.js')
 
-app.get('/events', (req, res, next) => {
-  events.findByPetId(ddc, 1)
+const ngResponce = { result: "NG" }
+
+app.get('/pets/:petId/events', (req, res, next) => {
+  events.findByPetId(ddc, req.params.petId)
   .then( (result) => { res.send(result) } )
+  .catch( () => { return ngResponce })
 })
 
-app.put('/events', (req, res, next) => {
-  events.add(ddc, req.body)
+app.put('/pets/:petId/events', (req, res, next) => {
+  events.add(ddc, req.params.petId, req.body)
   .then( (result) => { res.send(result) } )
+  .catch( () => { return ngResponce })
 })
 
 module.exports.handler = serverless(app)
