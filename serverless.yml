@@ -1,4 +1,4 @@
-service: nekolog-app
+service: nekolog
 
 provider:
   name: aws
