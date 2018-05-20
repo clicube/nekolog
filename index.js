@@ -7,7 +7,7 @@ const ddc = new AWS.DynamoDB.DocumentClient();
 
 app.get('/events', (req, res, next) => {
   ddc.scan({
-    TableName: "eventsTable"
+    TableName: "Events"
   }).promise()
   .then((result) => res.send(result.Items))
   .catch(next)
@@ -15,7 +15,7 @@ app.get('/events', (req, res, next) => {
 
 app.put('/events', (req, res, next) => {
   ddc.put({
-    TableName: "eventsTable",
+    TableName: "Events",
     Item: {
       petId: "1",
       createdAt: Date.now() ,
