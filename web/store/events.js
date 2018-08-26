@@ -10,14 +10,19 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    events: []
+    list: [
+      {
+        type: 'water',
+        value: 111
+      }
+    ]
   },
   mutations: {
     ...firebaseMutations
   },
   actions: {
     INIT_EVENTS: firebaseAction(({ bindFirebaseRef }) => {
-      bindFirebaseRef('events', eventsRef)
+      bindFirebaseRef('list', eventsRef)
     })
   },
   plugins: [initPlugin]
