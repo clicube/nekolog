@@ -19,6 +19,12 @@
           class="button--grey">GitHub</a>
       </div>
     </div>
+    <ul>
+      <li v-for="event in events" :key="event">
+        <p>{{ event.type }}</p>
+        <p>{{ event.value }}</p>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -28,7 +34,10 @@ import AppLogo from '~/components/AppLogo.vue'
 export default {
   components: {
     AppLogo
-  }
+  },
+  computed: {
+    events () { return this.$store.state.events.events }
+  },
 }
 </script>
 

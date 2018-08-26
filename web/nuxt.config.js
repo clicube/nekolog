@@ -35,6 +35,13 @@ module.exports = {
       }
     }
   },
-  mode: 'spa'
+  mode: 'spa',
+  env: {
+    apiKey: "AIzaSyCjdTSwCsKAw0Hb8eHXqUz14aH-G5hszOA",
+    authDomain: "nekolog-a8b2a.firebaseapp.com",
+    databaseURL: "https://nekolog-a8b2a.firebaseio.com",
+    projectId: "nekolog-a8b2a",
+    storageBucket: "nekolog-a8b2a.appspot.com",
+    messagingSenderId: "734137811077"
+  }
 }
-
