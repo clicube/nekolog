@@ -9,7 +9,10 @@ Vue.use(Vuex)
 
 export default {
   state: () => {{
-    events: []
+    events: [{
+      type: 'water',
+      value: 111
+    }]
   }},
   mutations: {
     ...firebaseMutations
