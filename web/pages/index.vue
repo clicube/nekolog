@@ -6,7 +6,7 @@
         nekolog-web
       </h1>
       <h2 class="subtitle">
-        Nuxt.js project
+        nekolog-web
       </h2>
       <div class="links">
         <a
@@ -30,14 +30,13 @@
 
 <script>
 import AppLogo from '~/components/AppLogo.vue'
+import Vuex from 'vuex'
 
 export default {
   components: {
     AppLogo
   },
-  computed: {
-    events () { return this.$store.state.events.events }
-  },
+  computed: Vuex.mapState(['events']),
 }
 </script>
 

@@ -3,15 +3,15 @@ import Vuex from 'vuex'
 import firebase from '~/plugins/firebase'
 import { firebaseMutations, firebaseAction } from 'vuexfire'
 const db = firebase.database()
-const eventsRef = db.ref('/events')
+const eventsRef = db.ref('events')
 const initPlugin = store => store.dispatch('INIT_EVENTS')
 
 Vue.use(Vuex)
 
-export default {
-  state: () => {{
+export default new Vuex.Store({
+  state: {
     events: []
-  }},
+  },
   mutations: {
     ...firebaseMutations
   },
@@ -21,4 +21,4 @@ export default {
     })
   },
   plugins: [initPlugin]
-}
+})
