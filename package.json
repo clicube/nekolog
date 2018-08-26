@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/clicube/nekolog#readme",
   "dependencies": {
-    "express": "^4.16.3",
-    "serverless-http": "^1.5.5"
-  }
+    "firebase-tools": "^4.2.0"
+  },
+  "devDependencies": {}
 }
