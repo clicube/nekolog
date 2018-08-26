@@ -1,4 +1,13 @@
 steps:
-- name: ubuntu
-  args: ['echo', '$_FIREBASE_TOKEN']
+- name: gcr.io/cloud-builders/npm
+  args: ['install']
+  dir: 'web'
+- name: gcr.io/cloud-builders/npm
+  args: ['run', 'generate']
+  dir: 'web'
+- name: gcr.io/cloud-builders/npm
+  args: ['install']
+- name: gcr.io/cloud-builders/npm
+  entrypoint: 'npx'
+  args: ['firebase', 'deploy', '--token', '"$_FIREBASE_TOKEN"']
 
