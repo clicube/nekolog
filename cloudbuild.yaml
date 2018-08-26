@@ -9,5 +9,5 @@ steps:
   args: ['install']
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'npx'
-  args: ['firebase', 'deploy', '--token "$_FIREBASE_TOKEN"']
+  args: ['firebase', 'deploy', '--token', '$_FIREBASE_TOKEN']
 
