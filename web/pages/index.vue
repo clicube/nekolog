@@ -20,7 +20,7 @@
       </div>
     </div>
     <ul>
-      <li v-for="event in events" :key="event">
+      <li v-for="event in events" :key="event.value">
         <p>{{ event.type }}</p>
         <p>{{ event.value }}</p>
       </li>
