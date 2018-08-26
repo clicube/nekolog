@@ -4,7 +4,7 @@ import firebase from '~/plugins/firebase'
 import { firebaseMutations, firebaseAction } from 'vuexfire'
 const db = firebase.database()
 const eventsRef = db.ref('/events')
-const initPlugin = store => store.dispatch(INIT_EVENTS)
+const initPlugin = store => store.dispatch('INIT_EVENTS')
 
 Vue.use(Vuex)
 
