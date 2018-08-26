@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "web/.nuxt",
+    "public": "web/dist",
     "ignore": [
       "firebase.json",
       "**/.*",
