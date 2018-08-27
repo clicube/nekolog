@@ -1,30 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import firebase from '~/plugins/firebase'
-import { firebaseMutations, firebaseAction } from 'vuexfire'
-const db = firebase.firestore()
-db.settings({timestampsInSnapshots: true})
+import {firebaseMutations, firebaseAction} from 'vuexfire'
+
+import db from '~/plugins/firestore'
+
 const eventsRef = db.collection('events')
-const initPlugin = store => store.dispatch('INIT_EVENTS')
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
-  state: {
-    list: [
-      {
-        type: 'water',
-        value: 111
-      }
-    ]
-  },
-  mutations: {
-    ...firebaseMutations
-  },
-  actions: {
-    INIT_EVENTS: firebaseAction(({ bindFirebaseRef }) => {
-      bindFirebaseRef('list', eventsRef)
-    })
-  },
-  plugins: [initPlugin]
+export const state = () => ({
+  list: []
 })
+
+export const actions = {
+  INIT_EVENTS: firebaseAction(({bindFirebaseRef}) => {
+    bindFirebaseRef('list', eventsRef)
+  }),
+  ADD_EVENT: firebaseAction((context, data) => {
+    eventsRef.add(data);
+  })
+}
+

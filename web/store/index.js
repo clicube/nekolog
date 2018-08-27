@@ -1,9 +1,5 @@
-import Vuex from 'vuex'
-import events from './events'
-const store = () => new Vuex.Store({
-  modules: {
-    events: events
-  }
-})
+import { firebaseMutations } from 'vuexfire'
 
-export default store
+export const mutations = {
+  ...firebaseMutations
+}
