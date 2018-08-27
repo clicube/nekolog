@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import {firebaseMutations, firebaseAction} from 'vuexfire'
+import {firebaseAction} from 'vuexfire'
 
 import db from '~/plugins/firestore'
 
