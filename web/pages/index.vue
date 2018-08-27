@@ -1,30 +1,15 @@
 <template>
   <section class="container">
     <div>
-      <app-logo/>
-      <h1 class="title">
-        nekolog-web
-      </h1>
-      <h2 class="subtitle">
-        nekolog-web
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
+      <button @click="addEvent_water">水交換</button>
+      <button @click="addEvent_oshikko">おしっこ</button>
+      <button @click="addEvent_unko">うんこ</button>
     </div>
     <ul>
-      <li v-for="event in events" :key="event.id">
-        <p>{{ event.type }} / {{ event.value }}</p>
+      <li v-for="event in events" :key="event.createdAt">
+        <p>{{ type(event.type) }} / {{ date(event.createdAt) }}</p>
       </li>
     </ul>
-    <button @click="addEvent">add event</button>
   </section>
 </template>
 
@@ -40,8 +25,31 @@
       events: state => state.events.list
     }),
     methods: {
-      addEvent() {
-        this.$store.dispatch('events/ADD_EVENT', {type: 'ooo', value: 'vvv'})
+      addEvent_water() {
+        this.$store.dispatch('events/ADD_EVENT', {type: 'water', createdAt: Date.now()})
+      },
+      addEvent_oshikko() {
+        this.$store.dispatch('events/ADD_EVENT', {type: 'oshikko', createdAt: Date.now()})
+      },
+      addEvent_unko() {
+        this.$store.dispatch('events/ADD_EVENT', {type: 'unko', createdAt: Date.now()})
+      },
+      date(ms) {
+        const date = new Date(0)
+        date.setUTCMilliseconds(ms)
+        return date.toString()
+      },
+      type(type) {
+        switch (type) {
+          case 'water':
+            return '水交換'
+          case 'oshikko':
+            return 'おしっこ'
+          case 'unko':
+            return 'うんこ'
+          default:
+            return type
+        }
       }
     },
     created() {
