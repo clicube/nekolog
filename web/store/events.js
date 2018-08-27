@@ -14,7 +14,7 @@ export const state = () => ({
 
 export const actions = {
   INIT_EVENTS: firebaseAction(({bindFirebaseRef}) => {
-    bindFirebaseRef('list', eventsRef)
+    bindFirebaseRef('list', eventsRef.orderBy("createdAt", "asc"))
   }),
   ADD_EVENT: firebaseAction((context, data) => {
     eventsRef.add(data);
