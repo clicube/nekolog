@@ -1,16 +1,33 @@
 <template>
-  <section class="container">
+  <v-app class="container">
+
+    <nuxt-link to="edit">編集</nuxt-link>
+
     <div>
-      <button @click="addEvent_water">水交換</button>
-      <button @click="addEvent_oshikko">おしっこ</button>
-      <button @click="addEvent_unko">うんこ</button>
+      <v-btn color="success" @click="addEvent_water">水交換</v-btn>
+      <v-btn color="error" @click="addEvent_oshikko">おしっこ</v-btn>
+      <v-btn color="info" @click="addEvent_unko">うんこ</v-btn>
     </div>
+    <v-container>
+      <v-layout row wrap>
+
+        <v-flex xs3 pa-2 v-for="event in events" :key="event.createdAt">
+          <v-card>
+            <v-card-title primary-title>
+              <div>
+                <h3 class="headline mb-0">{{ type(event.type) }}</h3>
+                <div>{{ date(event.createdAt) }}</div>
+              </div>
+            </v-card-title>
+          </v-card>
+        </v-flex>
+
+      </v-layout>
+    </v-container>
     <ul>
-      <li v-for="event in events" :key="event.createdAt">
-        <p>{{ type(event.type) }} / {{ date(event.createdAt) }}</p>
-      </li>
+
     </ul>
-  </section>
+  </v-app>
 </template>
 
 <script>
