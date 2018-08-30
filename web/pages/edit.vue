@@ -16,11 +16,9 @@
     <v-container pa-3>
 
       <v-layout row justify-space-between align-center pa-2>
-        <v-avatar v-ripple><v-icon>navigate_before</v-icon></v-avatar>
-        <v-spacer/>
-        <v-flex headline v-ripple pa-2>2018/8/29 (Wed)</v-flex>
-        <v-spacer/>
-        <v-avatar v-ripple><v-icon>navigate_next</v-icon></v-avatar>
+        <v-btn fab flat small><v-icon>navigate_before</v-icon></v-btn>
+        <v-flex headline v-ripple text-xs-center pa-2>2018/8/29 (Wed)</v-flex>
+        <v-btn fab flat small><v-icon>navigate_next</v-icon></v-btn>
 
       </v-layout>
 
@@ -30,7 +28,23 @@
           <v-card dark color="secondary" v-ripple>
             <v-layout>
               <v-flex xs9>
-                <v-card-title class="headline" primary-title>おしっこ</v-card-title>
+                <v-card-title class="title" primary-title>おしっこ</v-card-title>
+                <v-card-text>6時間前</v-card-text>
+              </v-flex>
+              <v-flex xs3>
+                <v-layout fill-height align-center justify-center>
+                  <v-icon medium>edit</v-icon>
+                </v-layout>
+              </v-flex>
+            </v-layout>
+          </v-card>
+        </v-flex>
+
+        <v-flex xs12 pa-2>
+          <v-card dark color="secondary" v-ripple>
+            <v-layout>
+              <v-flex xs9>
+                <v-card-title class="title" primary-title>おしっこ</v-card-title>
                 <v-card-text>4分前</v-card-text>
               </v-flex>
               <v-flex xs3>
@@ -49,21 +63,27 @@
           </v-btn>
         </v-flex>
 
-
         <v-flex xs12 pa-2>
-          <v-card color="white" v-ripple>
+          <v-card dark color="secondary" v-ripple>
             <v-layout>
               <v-flex xs9>
-                <v-card-title class="headline" primary-title>うんち</v-card-title>
-                <v-card-text>26時間前</v-card-text>
+                <v-card-title class="title" primary-title>うんち</v-card-title>
+                <v-card-text>2時間前</v-card-text>
               </v-flex>
-              <v-flex xs3 justify-center>
+              <v-flex xs3>
                 <v-layout fill-height align-center justify-center>
-                  <v-icon medium>add</v-icon>
+                  <v-icon medium>edit</v-icon>
                 </v-layout>
               </v-flex>
             </v-layout>
           </v-card>
+        </v-flex>
+
+        <v-flex xs12 pa-2 text-xs-center>
+          <v-btn flat color="secondary">
+            <v-icon>add</v-icon>
+            うんち を追加
+          </v-btn>
         </v-flex>
 
         <v-flex xs12 pa-2>
