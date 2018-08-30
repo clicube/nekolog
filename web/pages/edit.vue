@@ -24,6 +24,8 @@
 
       </v-layout>
 
+      <v-subheader>今日の記録</v-subheader>
+
       <v-layout row wrap>
 
         <v-flex xs12 pa-2>
@@ -50,6 +52,7 @@
         </v-flex>
 
 
+        <v-subheader>まだ記録されていないイベント</v-subheader>
         <v-flex xs12 pa-2>
           <v-card color="white" v-ripple>
             <v-layout>
