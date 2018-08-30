@@ -24,8 +24,6 @@
 
       </v-layout>
 
-      <v-subheader>今日の記録</v-subheader>
-
       <v-layout row wrap>
 
         <v-flex xs12 pa-2>
@@ -52,13 +50,12 @@
         </v-flex>
 
 
-        <v-subheader>まだ記録されていないイベント</v-subheader>
         <v-flex xs12 pa-2>
           <v-card color="white" v-ripple>
             <v-layout>
               <v-flex xs9>
                 <v-card-title class="headline" primary-title>うんち</v-card-title>
-                <v-card-text>前回のイベント：26時間前</v-card-text>
+                <v-card-text>26時間前</v-card-text>
               </v-flex>
               <v-flex xs3 justify-center>
                 <v-layout fill-height align-center justify-center>
@@ -74,7 +71,7 @@
             <v-layout>
               <v-flex xs9>
                 <v-card-title class="headline" primary-title>水交換</v-card-title>
-                <v-card-text>前回のイベント：11時間前</v-card-text>
+                <v-card-text>11時間前</v-card-text>
               </v-flex>
               <v-flex xs3 justify-center>
                 <v-layout fill-height align-center justify-center>
@@ -90,7 +87,7 @@
             <v-layout>
               <v-flex xs9>
                 <v-card-title class="headline" primary-title>ブラッシング</v-card-title>
-                <v-card-text>前回のイベント：13時間前</v-card-text>
+                <v-card-text>13時間前</v-card-text>
               </v-flex>
               <v-flex xs3 justify-center>
                 <v-layout fill-height align-center justify-center>
