@@ -1,21 +1,28 @@
 <template>
   <v-app class="container">
-    <v-toolbar dark color="primary">
-      <v-toolbar-side-icon>
-        <v-icon>calendar_today</v-icon>
-      </v-toolbar-side-icon>
-      <v-toolbar-side-icon>
-        <v-icon>navigate_before</v-icon>
-      </v-toolbar-side-icon>
+    <v-toolbar fixed dark color="primary">
 
-      <v-toolbar-title>2018/8/29 (Wed)</v-toolbar-title>
+      <v-spacer/>
+      <v-toolbar-title>ねころぐ</v-toolbar-title>
+      <v-spacer/>
 
-      <v-spacer></v-spacer>
       <v-toolbar-side-icon>
-        <v-icon>navigate_next</v-icon>
+        <v-icon>more_vert</v-icon>
       </v-toolbar-side-icon>
     </v-toolbar>
+
+    <v-spacer style="height: 56px"></v-spacer>
+
     <v-container pa-3>
+
+      <v-layout row justify-space-between align-center pa-2>
+        <v-avatar v-ripple><v-icon>navigate_before</v-icon></v-avatar>
+        <v-spacer/>
+        <v-flex headline v-ripple pa-2>2018/8/29 (Wed)</v-flex>
+        <v-spacer/>
+        <v-avatar v-ripple><v-icon>navigate_next</v-icon></v-avatar>
+
+      </v-layout>
 
       <v-layout row wrap>
 
@@ -28,7 +35,7 @@
               </v-flex>
               <v-flex xs3>
                 <v-layout fill-height align-center justify-center>
-                  <v-icon d-flex>edit</v-icon>
+                  <v-icon medium>edit</v-icon>
                 </v-layout>
               </v-flex>
             </v-layout>
@@ -37,7 +44,7 @@
 
         <v-flex xs12 pa-2 text-xs-center>
           <v-btn flat color="secondary">
-            <v-icon>add_circle_outline</v-icon>
+            <v-icon>add</v-icon>
             おしっこ を追加
           </v-btn>
         </v-flex>
@@ -52,7 +59,7 @@
               </v-flex>
               <v-flex xs3 justify-center>
                 <v-layout fill-height align-center justify-center>
-                  <v-icon d-flex>add_circle_outline</v-icon>
+                  <v-icon medium>add</v-icon>
                 </v-layout>
               </v-flex>
             </v-layout>
@@ -68,7 +75,7 @@
               </v-flex>
               <v-flex xs3 justify-center>
                 <v-layout fill-height align-center justify-center>
-                  <v-icon d-flex>add_circle_outline</v-icon>
+                  <v-icon medium>add</v-icon>
                 </v-layout>
               </v-flex>
             </v-layout>
