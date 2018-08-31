@@ -21,6 +21,7 @@ steps:
   branches: [ 'firebase-deploy' ]
 
 
+
 secrets:
 - kmsKeyName: projects/nekolog-backend/locations/global/keyRings/deploy-keys/cryptKeys/key
   secretEnv:
