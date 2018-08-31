@@ -7,7 +7,6 @@ steps:
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'build']
   dir: 'web'
-  waitFor: ['web_install']
 
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'lint']
@@ -16,6 +15,7 @@ steps:
 
 - name: gcr.io/cloud-builders/npm
   args: ['install']
+  waitFor: ['web_install']
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'npx'
