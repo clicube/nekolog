@@ -11,6 +11,7 @@ steps:
 
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'lint']
+  dir: 'web'
   waitFor: ['web_install']
 
 - name: gcr.io/cloud-builders/npm
