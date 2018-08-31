@@ -2,7 +2,7 @@ steps:
 - name: gcr.io/cloud-builders/npm
   args: ['install']
   dir: 'web'
-  secretEnv: ['FIREBASE_TOKEN']
+  secretEnv: ['_FIREBASE_TOKEN']
 
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'build']
@@ -14,11 +14,11 @@ steps:
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'npx'
   args: ['firebase', 'deploy', '--token', '$FIREBASE_TOKEN']
-  secretEnv: ['FIREBASE_TOKEN']
+  secretEnv: ['_FIREBASE_TOKEN']
 
 
 
 secrets:
 - kmsKeyName: projects/nekolog-backend/locations/global/keyRings/deploy-keys/cryptKeys/key
   secretEnv:
-    FIREBASE_TOKEN: CiQABVwX6NMTSMzDfXc5tSJBteaFGvnvELOavFu5gcJr18gugW0SVgC0yhdb85WJnUne36RCMxendBgK0Faa02SNGDEdkNgUDDd2Ymt+eA9qkewD/+ckYeIO7g2FK+gJhuRaZnF1znb4B41zEuliWRtHOFCN44jcFfeG4Zc9
+    _FIREBASE_TOKEN: CiQABVwX6NMTSMzDfXc5tSJBteaFGvnvELOavFu5gcJr18gugW0SVgC0yhdb85WJnUne36RCMxendBgK0Faa02SNGDEdkNgUDDd2Ymt+eA9qkewD/+ckYeIO7g2FK+gJhuRaZnF1znb4B41zEuliWRtHOFCN44jcFfeG4Zc9
