@@ -13,7 +13,7 @@ steps:
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'npx'
-  args: ['firebase', 'deploy', '--token', '$FIREBASE_TOKEN']
+  args: ['firebase', 'deploy', '--token', '$_FIREBASE_TOKEN']
   secretEnv: ['_FIREBASE_TOKEN']
 
 
