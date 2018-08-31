@@ -2,16 +2,20 @@ steps:
 - name: gcr.io/cloud-builders/npm
   args: ['install']
   dir: 'web'
+  id: 'web_install'
 
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'build']
   dir: 'web'
-
-- name: gcr.io/cloud-builders/npm
-  args: ['install']
+  waitFor: ['web_install']
 
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'lint']
+  waitFor: ['web_install']
+
+- name: gcr.io/cloud-builders/npm
+  args: ['install']
+  waitFor: ['-']
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'npx'
@@ -21,6 +25,6 @@ steps:
 
 
 secrets:
-- kmsKeyName: projects/nekolog-backend/locations/global/keyRings/deploy-keys/cryptoKeys/key
+- kmsKeyName: 'projects/nekolog-backend/locations/global/keyRings/deploy-keys/cryptoKeys/key'
   secretEnv:
-    _FIREBASE_TOKEN: CiQABVwX6NMTSMzDfXc5tSJBteaFGvnvELOavFu5gcJr18gugW0SVgC0yhdb85WJnUne36RCMxendBgK0Faa02SNGDEdkNgUDDd2Ymt+eA9qkewD/+ckYeIO7g2FK+gJhuRaZnF1znb4B41zEuliWRtHOFCN44jcFfeG4Zc9
+    _FIREBASE_TOKEN: 'CiQABVwX6NMTSMzDfXc5tSJBteaFGvnvELOavFu5gcJr18gugW0SVgC0yhdb85WJnUne36RCMxendBgK0Faa02SNGDEdkNgUDDd2Ymt+eA9qkewD/+ckYeIO7g2FK+gJhuRaZnF1znb4B41zEuliWRtHOFCN44jcFfeG4Zc9'
