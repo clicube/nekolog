@@ -3,22 +3,18 @@ steps:
   args: ['install']
   dir: 'web'
   secretEnv: ['FIREBASE_TOKEN']
-  branches: [ 'firebase-deploy' ]
 
 - name: gcr.io/cloud-builders/npm
   args: ['run', 'build']
   dir: 'web'
-  branches: [ 'firebase-deploy' ]
 
 - name: gcr.io/cloud-builders/npm
   args: ['install']
-  branches: [ 'firebase-deploy' ]
 
 - name: gcr.io/cloud-builders/npm
   entrypoint: 'npx'
   args: ['firebase', 'deploy', '--token', '$FIREBASE_TOKEN']
   secretEnv: ['FIREBASE_TOKEN']
-  branches: [ 'firebase-deploy' ]
 
 
 
