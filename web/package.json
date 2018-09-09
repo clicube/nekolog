@@ -10,8 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "precommit": "npm run lint",
-    "deploy": "git push -f origin HEAD:firebase-deploy"
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "@nuxtjs/vuetify": "^0.4.2",

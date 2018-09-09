@@ -35,7 +35,7 @@ jobs:
         at: .
     - run: cd web && npm run lint
 
-  deploy:
+  dev-deploy:
     docker:
     - image: circleci/node:10
     working_directory: ~/repo
@@ -60,3 +60,9 @@ workflows:
     - test:
         requires:
         - build
+    - dev-deploy:
+        requires:
+        - build
+        filters:
+          branches:
+            only: dev-deploy
