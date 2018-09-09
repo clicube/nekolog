@@ -1,0 +1,69 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+
+  build:
+    docker:
+    - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+    - checkout
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "web/package-lock.json" }}
+        - v1-dependencies-
+    - run: cd web && npm install
+    - save_cache:
+        paths:
+        - node_modules
+        key: v1-dependencies-{{ checksum "web/package-lock.json" }}
+    - run: cd web && npm run build
+    - persist_to_workspace:
+        root: .
+        paths:
+        - .
+
+  test:
+    docker:
+    - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+    - attach_workspace:
+        at: .
+    - run: cd web && npm run lint
+
+  dev-deploy:
+    docker:
+    - image: circleci/node:10
+    working_directory: ~/repo
+    steps:
+    - attach_workspace:
+        at: .
+    - restore_cache:
+        keys:
+        - v1-dependencies-{{ checksum "package-lock.json" }}
+        - v1-dependencies-
+    - run: npm install
+    - save_cache:
+        paths:
+        - node_modules
+        key: v1-dependencies-{{ checksum "package-lock.json" }}
+    - run: npx firebase deploy --token $FIREBASE_TOKEN
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+    - build
+    - test:
+        requires:
+        - build
+    - dev-deploy:
+        requires:
+        - build
+        filters:
+          branches:
+            only: dev-deploy
