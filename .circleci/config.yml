@@ -61,6 +61,9 @@ workflows:
     - test:
         requires:
         - build
+        filters:
+          branches:
+            ignore: dev-deploy
     - dev-deploy:
         requires:
         - build
