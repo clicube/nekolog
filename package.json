@@ -1,7 +1,7 @@
 {
   "name": "nekolog",
   "version": "1.0.0",
-  "description": "",
+  "description": "> Nuxt.js project",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,15 +10,13 @@
     "type": "git",
     "url": "git+https://github.com/clicube/nekolog.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/clicube/nekolog/issues"
   },
   "homepage": "https://github.com/clicube/nekolog#readme",
-  "dependencies": {
-    "express": "^4.16.3",
-    "serverless-http": "^1.5.5"
+  "devDependencies": {
+    "firebase-tools": "^4.2.0"
   }
 }

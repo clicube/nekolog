@@ -1,6 +1,6 @@
-# nekolog
+# nekolog-web
 
-> Nuxt.js project
+> nekolog-web
 
 ## Build Setup
 
