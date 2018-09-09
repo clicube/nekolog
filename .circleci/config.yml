@@ -8,39 +8,40 @@ jobs:
   build:
     docker:
     - image: circleci/node:10
-    working_directory: ~/repo/web
+    working_directory: ~/repo
     steps:
     - checkout
     - restore_cache:
         keys:
-        - v1-dependencies-{{ checksum "package-lock.json" }}
+        - v1-dependencies-{{ checksum "web/package-lock.json" }}
         - v1-dependencies-
-    - run: pwd&&npm install
+    - run: cd web && npm install
     - save_cache:
         paths:
         - node_modules
-        key: v1-dependencies-{{ checksum "package-lock.json" }}
+        key: v1-dependencies-{{ checksum "web/package-lock.json" }}
     - run: cd web && npm run build
     - persist_to_workspace:
         root: .
         paths:
-        - web
+        - .
 
   test:
     docker:
     - image: circleci/node:10
-    working_directory: ~/repo/web
+    working_directory: ~/repo
     steps:
     - attach_workspace:
-        at: web
-    - run: npm run lint
+        at: .
+    - run: cd web && npm run lint
 
   deploy:
     docker:
     - image: circleci/node:10
     working_directory: ~/repo
     steps:
-    - checkout
+    - attach_workspace:
+        at: .
     - restore_cache:
         keys:
         - v1-dependencies-{{ checksum "package-lock.json" }}
